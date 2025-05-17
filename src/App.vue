@@ -1,4 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+
+const changeLanguage = (lang: string) => {
+  locale.value = lang
+}
+</script>
 
 <template>
   <div class="wrapper">
@@ -8,8 +16,8 @@
       <header>
         <img src="./assets/feat_logo_rgb_green 1.png" alt="Feat logo">
         <div class="lang-selector">
-          <button>hu</button>
-          <button class="selected">en</button>
+          <button @click="changeLanguage('hu')" :class="{ selected: locale === 'hu' }">hu</button>
+          <button @click="changeLanguage('en')" :class="{ selected: locale === 'en' }">en</button>
         </div>
       </header>
       <router-view />
