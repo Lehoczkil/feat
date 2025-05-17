@@ -1,0 +1,15 @@
+{
+  "printWidth": 120,
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "semi": false,
+  "bracketSpacing": true,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "arrowParens": "always",
+  "overrides": [
+    {
+      "files": "{src,tests,scripts}.{ts,vue,js}"
+    }
+  ]
+}

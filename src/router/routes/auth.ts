@@ -1,4 +1,4 @@
-import type { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router'
 
 export const auth: Array<RouteRecordRaw> = [
   {
@@ -6,7 +6,7 @@ export const auth: Array<RouteRecordRaw> = [
     name: 'Login',
     component: () => import('../../views/Login.vue'),
     meta: {
-      title: 'Feat - Login'
-    }
-  }
+      title: 'Feat - Login',
+    },
+  },
 ]

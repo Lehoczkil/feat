@@ -8,7 +8,7 @@ export const i18n = createI18n({
   fallbackLocale: 'en',
   messages: {
     en,
-    hu
+    hu,
   },
-  globalInjection: true // így nem kell minden komponensbe importálni a t() függvényt
+  globalInjection: true, // így nem kell minden komponensbe importálni a t() függvényt
 })
