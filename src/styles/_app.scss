@@ -8,6 +8,7 @@ body #app {
   padding: 0;
   box-sizing: border-box;
   font-family: $font-family;
+  overflow-x: hidden;
 }
 
 .wrapper {
@@ -34,7 +35,7 @@ body #app {
       animation: float 8s ease-in-out infinite;
       filter: drop-shadow(0 4px 8px rgba(127, 38, 91, 0.2));
     }
-    
+
     .planet-small {
       @include background-image(url('../assets/planet_small.png'));
       position: absolute;
@@ -45,7 +46,7 @@ body #app {
       animation: float 6s ease-in-out infinite 1s;
       filter: drop-shadow(0 2px 4px rgba(127, 38, 91, 0.15));
     }
-    
+
     .text-l {
       @include background-image(url('../assets/text_l.png'));
       position: absolute;
@@ -55,7 +56,7 @@ body #app {
       top: 237.73px;
       animation: gentle-sway-left 7s ease-in-out infinite;
     }
-    
+
     .text-r {
       @include background-image(url('../assets/text_r.png'));
       position: absolute;
@@ -66,7 +67,8 @@ body #app {
       animation: gentle-sway-right 7s ease-in-out infinite reverse;
     }
 
-    .illustration-title, .illustration-subtitle {
+    .illustration-title,
+    .illustration-subtitle {
       position: absolute;
       left: 0;
       width: 100%;
@@ -117,6 +119,64 @@ body #app {
           &.selected {
             font-weight: 700;
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .wrapper {
+    flex-direction: column;
+
+    .view {
+      margin-top: 70px;
+
+      .login-container,
+      .view-content {
+        margin-inline: auto;
+      }
+    }
+
+    .illustration {
+      margin-inline: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  body #app {
+    background-color: white;
+
+    .wrapper {
+      .view {
+        margin-top: 40px;
+
+        header img {
+          z-index: 3;
+        }
+
+        .login-container,
+        .view-content {
+          width: 100%;
+        }
+      }
+
+      .illustration {
+        .background,
+        .planet-small,
+        .text-l,
+        .text-r,
+        .illustration-title,
+        .illustration-subtitle {
+          display: none;
+        }
+
+        .planet {
+          top: -70px;
+          left: 0;
+          bottom: auto;
+          right: auto;
         }
       }
     }
