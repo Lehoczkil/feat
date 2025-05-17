@@ -2,7 +2,7 @@
   <div class="login-container">
     <div class="header">
       <div class="header-text">
-        <h1 class="title">{{ $t('join_title') }}</h1>
+        <h1 class="title text-bold">{{ $t('join_title') }}&nbsp;<em>{{ $t('feat') }}</em></h1>
         <p class="subtitle">{{ $t('join_subtitle') }}</p>
       </div>
     </div>

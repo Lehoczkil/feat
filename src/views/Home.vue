@@ -1,22 +1,22 @@
 <template>
   <div class="view-content">
-    <h1 class="title">{{ $t('welcome_part1') }}<span class="str">{{ $t('welcome_part2') }}</span></h1>
-    <p class="text">{{ $t('job_title_part1') }}<span class="str">{{ $t('job_title_part2') }}</span></p>
+    <h1 class="title">{{ $t('welcome_part1') }}<span class="text-bold">{{ $t('welcome_part2') }}</span></h1>
+    <p class="text">{{ $t('job_title_part1') }}<span class="text-bold">{{ $t('job_title_part2') }}</span></p>
     <p class="text">{{ $t('features') }}:</p>
     <div class="row">
-      <h2 class="subtitle red">
+      <h2 class="subtitle text-bold red">
         {{ $t('feature_1') }}
       </h2>
       <p class="text">{{ $t('feature_text') }}</p>
     </div>
     <div class="row">
-      <h2 class="subtitle green">
+      <h2 class="subtitle text-bold green">
         {{ $t('feature_2') }}
       </h2>
       <p class="text">{{ $t('feature_text') }}</p>
     </div>
     <div class="row">
-      <h2 class="subtitle blue">
+      <h2 class="subtitle text-bold blue">
         {{ $t('feature_3') }}
       </h2>
       <p class="text">{{ $t('feature_text') }}</p>

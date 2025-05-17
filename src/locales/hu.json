@@ -1,7 +1,8 @@
 {
   "login": "Bejelentkezés",
   "logout": "Kijelentkezés",
-  "join_title": "Csatlakozz a feat.-hez",
+  "join_title": "Csatlakozz a",
+  "feat": "feat.-hez",
   "join_subtitle": "Lásd, mi fog történni az életeddel.",
   "email": "Email",
   "password": "Jelszó",

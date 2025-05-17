@@ -1,3 +1,4 @@
+// Colors
 $background-color: #ffe6c9;
 $gray-font-color: #525252;
 $light-gray-font-color: #828282;
@@ -8,9 +9,25 @@ $purple: #7f265b;
 $red: #ff0000;
 $green: #008000;
 $blue: #0000FF;
+$white: #FFFFFF;
 
+// Font
 $font-family: 'Nunito Sans', sans-serif;
 
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 24px;
+$spacing-xxl: 32px;
+$spacing-xxxl: 36px;
+
+// Sizes
+$input-height: 40px;
+$button-height: 40px;
+
+// Mixins
 @mixin background-image($image-url) {
   background-image: $image-url;
   background-size: contain;
@@ -19,44 +36,66 @@ $font-family: 'Nunito Sans', sans-serif;
   z-index: 2;
 }
 
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button-style {
+  @include flex-center;
+  padding: 13px 10px 12px;
+  gap: $spacing-md;
+  width: 100%;
+  height: $button-height;
+  background: $purple;
+  border-radius: 6px;
+  border: none;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 25px;
+  color: $white;
+  cursor: pointer;
+}
+
+@mixin input-style {
+  padding: 13px 10px;
+  gap: $spacing-md;
+  height: $input-height;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: $gray-font-color;
+
+  &::placeholder {
+    color: $placeholder-color;
+  }
+}
+
+// Animations
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 @keyframes subtle-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.09);
-    opacity: 0.9;
-  }
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.09); opacity: 0.9; }
 }
 
 @keyframes gentle-sway-left {
-  0%,
-  100% {
-    transform: rotate(3deg);
-  }
-  50% {
-    transform: rotate(-3deg);
-  }
+  0%, 100% { transform: rotate(3deg); }
+  50% { transform: rotate(-3deg); }
 }
 
 @keyframes gentle-sway-right {
-  0%,
-  100% {
-    transform: rotate(-3deg);
-  }
-  50% {
-    transform: rotate(3deg);
-  }
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
 }
