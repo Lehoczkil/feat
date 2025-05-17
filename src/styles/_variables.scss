@@ -1,9 +1,59 @@
-$background-color: #FFE6C9;
+$background-color: #ffe6c9;
 $gray-font-color: #525252;
 $light-gray-font-color: #828282;
-$border-color: #DED2D9;
-$placeholder-color: #E0E0E0;
-$lighter-gray-font-color: #A1A1A1;
-$purple: #7F265B;
+$border-color: #ded2d9;
+$placeholder-color: #e0e0e0;
+$lighter-gray-font-color: #a1a1a1;
+$purple: #7f265b;
 
 $font-family: 'Nunito Sans', sans-serif;
+
+@mixin background-image($image-url) {
+  background-image: $image-url;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes subtle-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.09);
+    opacity: 0.9;
+  }
+}
+
+@keyframes gentle-sway-left {
+  0%,
+  100% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+}
+
+@keyframes gentle-sway-right {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}

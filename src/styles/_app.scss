@@ -16,8 +16,78 @@ body #app {
   display: flex;
   margin-inline: auto;
 
-  .skeleton {
+  .illustration {
     width: 746px;
+    position: relative;
+
+    .background {
+      @include background-image(url('../assets/skeleton.png'));
+      height: 617px;
+    }
+
+    .planet {
+      @include background-image(url('../assets/planet.png'));
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: -2%;
+      animation: float 8s ease-in-out infinite;
+      filter: drop-shadow(0 4px 8px rgba(127, 38, 91, 0.2));
+    }
+    
+    .planet-small {
+      @include background-image(url('../assets/planet_small.png'));
+      position: absolute;
+      width: 107.53px;
+      height: 107.58px;
+      left: 665.25px;
+      top: 656.54px;
+      animation: float 6s ease-in-out infinite 1s;
+      filter: drop-shadow(0 2px 4px rgba(127, 38, 91, 0.15));
+    }
+    
+    .text-l {
+      @include background-image(url('../assets/text_l.png'));
+      position: absolute;
+      width: 106.45px;
+      height: 57.84px;
+      left: 190.44px;
+      top: 237.73px;
+      animation: gentle-sway-left 7s ease-in-out infinite;
+    }
+    
+    .text-r {
+      @include background-image(url('../assets/text_r.png'));
+      position: absolute;
+      width: 115.21px;
+      height: 62.57px;
+      left: 473.23px;
+      top: 249.47px;
+      animation: gentle-sway-right 7s ease-in-out infinite reverse;
+    }
+
+    .illustration-title {
+      position: absolute;
+      left: 0;
+      top: 568px;
+      font-weight: 800;
+      font-size: 32px;
+      text-align: center;
+      color: $purple;
+      width: 100%;
+    }
+
+    .illustration-subtitle {
+      position: absolute;
+      left: 0;
+      top: 627px;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 27px;
+      text-align: center;
+      color: $purple;
+      width: 100%;
+    }
   }
 
   .view {

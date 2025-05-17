@@ -10,11 +10,22 @@ const changeLanguage = (lang: string) => {
 
 <template>
   <div class="wrapper">
-    <section class="skeleton">
+    <section class="illustration">
+      <div class="planet"></div>
+      <div class="background"></div>
+      <div class="text-l"></div>
+      <div class="text-r"></div>
+      <div class="planet-small"></div>
+      <h1 class="illustration-title">
+        {{ $t('illustration_title') }}
+      </h1>
+      <h2 class="illustration-subtitle">
+        {{ $t('illustration-subtitle') }}
+      </h2>
     </section>
     <section class="view">
       <header>
-        <img src="./assets/feat_logo_rgb_green 1.png" alt="Feat logo">
+        <img src="@/assets/logo.png" alt="Feat logo">
         <div class="lang-selector">
           <button @click="changeLanguage('hu')" :class="{ selected: locale === 'hu' }">hu</button>
           <button @click="changeLanguage('en')" :class="{ selected: locale === 'en' }">en</button>
