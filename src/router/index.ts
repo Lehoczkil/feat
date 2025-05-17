@@ -1,25 +1,43 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-import { auth } from './routes/auth'
+import { createRouter, createWebHistory } from 'vue-router';
+import { useAuthStore } from '@/store/auth';
 
-let baseRoutes: Array<RouteRecordRaw> = [
+const routes = [
   {
     path: '/',
-    alias: ['', '/home'],
     name: 'Home',
-    component: () => import('../views/Home.vue'),
-    meta: {
-      title: 'Feat',
-    },
+    component: () => import('@/views/Home.vue'),
+    meta: { requiresAuth: true }
   },
   {
-    path: '/:pathMatch(.*)*',
-    redirect: '/',
-  },
-]
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/Login.vue'),
+    meta: { requiresAuth: false }
+  }
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [...baseRoutes, ...auth],
-})
+  routes
+});
 
-export default router
+router.beforeEach(async (to) => {
+  const authStore = useAuthStore();
+
+  if (to.name === 'Login') {
+    if (authStore.isAuthenticated) return { name: 'Home' };
+    return;
+  }
+
+  if (!authStore.isInitialized) {
+    await authStore.initialize();
+  }
+
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    return { name: 'Login' };
+  }
+
+  return;
+});
+
+export default router;
