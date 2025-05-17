@@ -1,5 +1,14 @@
 {
-  "hello": "Hello World",
   "login": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "join_title": "Join to feat.",
+  "join_subtitle": "See what will going to happen with your life.",
+  "email": "Email",
+  "password": "Password",
+  "remember_me": "Remember Me",
+  "forgot_password": "Forget Password?",
+  "login_button": "Login",
+  "not_applied": "Not Applied Yet?",
+  "create_account": "Create an account",
+  "email_placeholder": "hello@feat.hu"
 }
