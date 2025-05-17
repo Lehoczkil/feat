@@ -12,5 +12,15 @@
   "create_account": "Fiók létrehozása",
   "email_placeholder": "hello@feat.hu",
    "illustration_title": "Egy program csak annyira jó, mint amilyen hasznos",
-  "illustration-subtitle": "A cél, hogy konzisztensen, pixel-pontos és nagy teljesítményű megoldásokat hozzunk létre"
+   "illustration-subtitle": "A cél, hogy konzisztensen, pixel-pontos és nagy teljesítményű megoldásokat hozzunk létre",
+   "welcome_part1": "Üdvözöllek ",
+   "welcome_part2": "John Carmack!",
+   "job_title_part1": "Munkakör: ",
+   "job_title_part2": "Frontend Fejlesztő",
+  "features": "Funkciók",
+  "feature_1": "1. funkció",
+  "feature_2": "2. funkció",
+  "feature_3": "3. funkció",
+  "feature_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.",
+  "logout_button": "Kijelentkezés"
 }

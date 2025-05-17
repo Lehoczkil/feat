@@ -12,5 +12,15 @@
   "create_account": "Create an account",
   "email_placeholder": "hello@feat.hu",
   "illustration_title": "Any program is only as good as it is useful",
-  "illustration-subtitle": "The aim is to consistently craft pixel-perfect and high-performance solutions"
+  "illustration-subtitle": "The aim is to consistently craft pixel-perfect and high-performance solutions",
+  "welcome_part1": "Hello ",
+  "welcome_part2": "John Carmack!",
+  "job_title_part1": "Job title: ",
+  "job_title_part2": "Frontend Developer",
+  "features": "Features",
+  "feature_1": "Feature 1",
+  "feature_2": "Feature 2",
+  "feature_3": "Feature 3",
+  "feature_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.",
+  "logout_button": "Logout"
 }
