@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '@/store/auth'
+import { onMounted } from 'vue'
 
 const { locale } = useI18n()
 const authStore = useAuthStore()
@@ -9,6 +10,8 @@ const changeLanguage = (lang: string) => {
   locale.value = lang
   authStore.lang = lang
 }
+
+onMounted(() => authStore.fetchUser());
 </script>
 
 <template>

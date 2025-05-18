@@ -2,36 +2,35 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { login as apiLogin, logout as apiLogout, getUser, getCsrfToken } from '@/api/auth'
 import type { User, LoginCredentials } from '@/types/auth'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null)
   const isAuthenticated = ref(false)
   const loading = ref(false)
-  const isInitialized = ref(false)
   const router = useRouter()
   const csrfToken = ref<string | null>(null)
 
   const lang = ref('en')
 
-  const initialize = async () => {
-    if (isInitialized.value) return
-
+  const fetchUser = async () => {
     loading.value = true
     try {
       const authUser = await getUser()
       if (authUser) {
         user.value = authUser
         isAuthenticated.value = true
-        router.push({ name: 'Login' })
+      } else {
+        user.value = null
+        isAuthenticated.value = false
       }
+      return authUser
     } catch (err) {
       user.value = null
       isAuthenticated.value = false
-      router.push
+      return null
     } finally {
       loading.value = false
-      isInitialized.value = true
     }
   }
 
@@ -63,7 +62,7 @@ export const useAuthStore = defineStore('auth', () => {
       await apiLogout()
       user.value = null
       isAuthenticated.value = false
-      router.push({ name: 'Login' })
+      await router.push({ name: 'Login' })
     } catch (err) {
       console.error(err)
     } finally {
@@ -75,11 +74,10 @@ export const useAuthStore = defineStore('auth', () => {
     user,
     isAuthenticated,
     loading,
-    isInitialized,
     csrfToken,
     lang,
 
-    initialize,
+    fetchUser,
     login,
     logout,
   }
