@@ -1,20 +1,19 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import { login as apiLogin, logout as apiLogout, getUser, getCsrfToken } from '@/api/auth'
 import type { User, LoginCredentials } from '@/types/auth'
-import {  useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref<User | null>(null)
-  const isAuthenticated = ref(false)
-  const loading = ref(false)
-  const isLoginLoading = ref(false)
+  const user: Ref<User | null> = ref<User | null>(null)
+  const isAuthenticated: Ref<boolean> = ref<boolean>(false)
+  const loading: Ref<boolean> = ref<boolean>(false)
+  const isLoginLoading: Ref<boolean> = ref<boolean>(false)
   const router = useRouter()
-  const csrfToken = ref<string | null>(null)
+  const csrfToken: Ref<string | null> = ref<string | null>(null)
+  const lang: Ref<string | null> = ref<string | null>('en')
 
-  const lang = ref('en')
-
-  const fetchUser = async () => {
+  const fetchUser = async (): Promise<User | null> => {
     loading.value = true
     try {
       const authUser = await getUser()
@@ -35,7 +34,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  const login = async (credentials: LoginCredentials) => {
+  const login = async (credentials: LoginCredentials): Promise<boolean> => {
     isLoginLoading.value = true
     try {
       await getCsrfToken()
@@ -57,7 +56,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  const logout = async () => {
+  const logout = async (): Promise<void> => {
     loading.value = true
     try {
       await apiLogout()

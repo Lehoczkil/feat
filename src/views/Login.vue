@@ -1,27 +1,32 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/store/auth';
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 import { useRouter } from 'vue-router';
+
+interface LoginCredentials {
+  email: string;
+  password: string;
+}
 
 const router = useRouter();
 const authStore = useAuthStore();
 const { login } = authStore;
 const { loading } = storeToRefs(authStore);
 
-const credentials = ref({
+const credentials: Ref<LoginCredentials> = ref({
   email: '',
   password: ''
 });
 
-const handleSubmit = async () => {
+const handleSubmit = async (): Promise<void> => {
   try {
     const success = await login(credentials.value);
     if (success) {
-      router.push({ name: 'Home' });
+      await router.push({ name: 'Home' });
     }
   } catch (err) {
-    console.error(err);
+    console.error('Login failed:', err);
   }
 };
 </script>

@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/store/auth';
 import { storeToRefs } from 'pinia';
+import { computed, type ComputedRef } from 'vue';
 
 const authStore = useAuthStore();
 const { user, loading, isLoginLoading } = storeToRefs(authStore);
 const { logout } = authStore;
 
-const handleLogout = async () => {
-  await logout();
+const handleLogout = async (): Promise<void> => {
+  try {
+    await logout();
+  } catch (error) {
+    console.error('Logout failed:', error);
+  }
 };
 
-const getName = () => {
-  return user.value?.first_name + ' ' + user.value?.last_name;
+const getName = (): string => {
+  if (!user.value) return '';
+  return `${user.value.first_name} ${user.value.last_name}`;
 };
 </script>
 
