@@ -23,10 +23,12 @@ export const useAuthStore = defineStore('auth', () => {
       if (authUser) {
         user.value = authUser
         isAuthenticated.value = true
+        router.push({ name: 'Login' })
       }
     } catch (err) {
       user.value = null
       isAuthenticated.value = false
+      router.push
     } finally {
       loading.value = false
       isInitialized.value = true
