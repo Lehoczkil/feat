@@ -12,6 +12,8 @@ export const useAuthStore = defineStore('auth', () => {
   const router = useRouter()
   const csrfToken = ref<string | null>(null)
 
+  const lang = ref('en')
+
   const initialize = async () => {
     if (isInitialized.value) return
 
@@ -73,6 +75,7 @@ export const useAuthStore = defineStore('auth', () => {
     loading,
     isInitialized,
     csrfToken,
+    lang,
 
     initialize,
     login,

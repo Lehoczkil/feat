@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { useAuthStore } from '@/store/auth'
 
 const { locale } = useI18n()
+const authStore = useAuthStore()
 
 const changeLanguage = (lang: string) => {
   locale.value = lang
+  authStore.lang = lang
 }
 </script>
 

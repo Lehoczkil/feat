@@ -13,10 +13,12 @@ const api = axios.create({
 
 api.interceptors.request.use(async (config) => {
       try {
-        const { csrfToken } = storeToRefs(useAuthStore());
-        
+        const { csrfToken, lang } = storeToRefs(useAuthStore());
+
         if (csrfToken) {
-          config.headers['X-XSRF-TOKEN'] = csrfToken;
+          config.headers['X-XSRF-TOKEN'] = csrfToken.value;
+          config.headers['Accept-Language'] = lang.value;
+          config.headers['Content-Language'] = lang.value;
         }
       } catch (error) {
         console.error(error);
