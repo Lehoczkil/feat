@@ -2,12 +2,13 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { login as apiLogin, logout as apiLogout, getUser, getCsrfToken } from '@/api/auth'
 import type { User, LoginCredentials } from '@/types/auth'
-import { useRoute, useRouter } from 'vue-router'
+import {  useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null)
   const isAuthenticated = ref(false)
   const loading = ref(false)
+  const isLoginLoading = ref(false)
   const router = useRouter()
   const csrfToken = ref<string | null>(null)
 
@@ -35,7 +36,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const login = async (credentials: LoginCredentials) => {
-    loading.value = true
+    isLoginLoading.value = true
     try {
       await getCsrfToken()
       csrfToken.value =
@@ -52,7 +53,7 @@ export const useAuthStore = defineStore('auth', () => {
       console.error(err)
       return false
     } finally {
-      loading.value = false
+      isLoginLoading.value = false
     }
   }
 
@@ -74,6 +75,7 @@ export const useAuthStore = defineStore('auth', () => {
     user,
     isAuthenticated,
     loading,
+    isLoginLoading,
     csrfToken,
     lang,
 

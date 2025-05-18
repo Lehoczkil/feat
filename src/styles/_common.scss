@@ -1,5 +1,28 @@
 @use 'variables' as *;
 
+.loading-placeholder {
+  position: relative;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  border-radius: 4px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+    animation: loading-shimmer 1.5s infinite;
+  }
+}
+
+.loading-text {
+  @extend .loading-placeholder;
+  color: transparent !important;
+}
+
 .text-bold {
   font-weight: 700;
 }
@@ -33,6 +56,23 @@
 // Components
 .button {
   @include button-style;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover:not(:disabled) {
+    transform: scale(0.98);
+    background-color: darken($purple, 3%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
   &-secondary {
     background: transparent;
