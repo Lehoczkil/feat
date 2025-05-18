@@ -80,6 +80,6 @@ const handleSubmit = async () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-@import "@/styles/login";
+<style lang="scss">
+@use "@/styles/login";
 </style>

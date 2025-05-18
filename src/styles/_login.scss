@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'common';
+@use 'variables' as *;
+@use 'common';
 
 .login-container {
   @include flex-column;

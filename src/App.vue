@@ -37,6 +37,6 @@ const changeLanguage = (lang: string) => {
 </template>
 
 <style lang="scss">
+@use "@/styles/app";
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-@import "@/styles/app";
 </style>

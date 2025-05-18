@@ -38,5 +38,5 @@ const getName = () => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/styles/home";
+@use "@/styles/home";
 </style>
