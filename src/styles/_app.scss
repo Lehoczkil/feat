@@ -67,9 +67,9 @@ body #app {
       animation: gentle-sway-right 7s ease-in-out infinite reverse;
     }
 
-    .illustration-title,
-    .illustration-subtitle {
+    .illustration-wrapper {
       position: absolute;
+      top: 568px;
       left: 0;
       width: 100%;
       text-align: center;
@@ -77,13 +77,13 @@ body #app {
     }
 
     .illustration-title {
-      top: 568px;
       font-weight: 800;
       font-size: 32px;
+      @include flex-column;
+      gap: 21px;
     }
 
     .illustration-subtitle {
-      top: 627px;
       font-weight: 600;
       font-size: 20px;
       line-height: 27px;

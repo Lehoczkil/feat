@@ -16,12 +16,14 @@ const changeLanguage = (lang: string) => {
       <div class="text-l"></div>
       <div class="text-r"></div>
       <div class="planet-small"></div>
-      <h1 class="illustration-title">
-        {{ $t('illustration_title') }}
-      </h1>
-      <h2 class="illustration-subtitle">
-        {{ $t('illustration-subtitle') }}
-      </h2>
+      <div class="illustration-wrapper">
+        <h1 class="illustration-title">
+          {{ $t('illustration_title') }}
+        </h1>
+        <h2 class="illustration-subtitle">
+          {{ $t('illustration-subtitle') }}
+        </h2>
+      </div>
     </section>
     <section class="view">
       <header>
