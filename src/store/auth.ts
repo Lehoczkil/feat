@@ -1,73 +1,81 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
-import { login as apiLogin, logout as apiLogout, getUser } from '@/api/auth';
-import type { User, LoginCredentials } from '@/types/auth';
-import { useRouter } from 'vue-router';
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+import { login as apiLogin, logout as apiLogout, getUser, getCsrfToken } from '@/api/auth'
+import type { User, LoginCredentials } from '@/types/auth'
+import { useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref<User | null>(null);
-  const isAuthenticated = ref(false);
-  const loading = ref(false);
-  const isInitialized = ref(false);
-  const router = useRouter();
+  const user = ref<User | null>(null)
+  const isAuthenticated = ref(false)
+  const loading = ref(false)
+  const isInitialized = ref(false)
+  const router = useRouter()
+  const csrfToken = ref<string | null>(null)
 
   const initialize = async () => {
-    if (isInitialized.value) return;
-    
-    loading.value = true;
+    if (isInitialized.value) return
+
+    loading.value = true
     try {
-      const authUser = await getUser();
+      const authUser = await getUser()
       if (authUser) {
-        user.value = authUser;
-        isAuthenticated.value = true;
+        user.value = authUser
+        isAuthenticated.value = true
       }
     } catch (err) {
-      user.value = null;
-      isAuthenticated.value = false;
+      user.value = null
+      isAuthenticated.value = false
     } finally {
-      loading.value = false;
-      isInitialized.value = true;
+      loading.value = false
+      isInitialized.value = true
     }
-  };
+  }
 
   const login = async (credentials: LoginCredentials) => {
-    loading.value = true;
+    loading.value = true
     try {
-      const authUser = await apiLogin(credentials);
-      user.value = authUser;
-      isAuthenticated.value = true;
-      await router.push({ name: 'Home' });
-      return true;
+      await getCsrfToken()
+      csrfToken.value =
+        document.cookie
+          .split('; ')
+          .find((row) => row.startsWith('XSRF-TOKEN='))
+          ?.split('=')[1] || null
+      const authUser = await apiLogin(credentials)
+      user.value = authUser
+      isAuthenticated.value = true
+      await router.push({ name: 'Home' })
+      return true
     } catch (err) {
-      console.error(err);
-      return false;
+      console.error(err)
+      return false
     } finally {
-      loading.value = false;
+      loading.value = false
     }
-  };
+  }
 
   const logout = async () => {
-    loading.value = true;
+    loading.value = true
     try {
-      await apiLogout();
-      user.value = null;
-      isAuthenticated.value = false;
-      router.push({ name: 'Login' });
+      await apiLogout()
+      user.value = null
+      isAuthenticated.value = false
+      router.push({ name: 'Login' })
     } catch (err) {
-      console.error(err);
+      console.error(err)
     } finally {
-      loading.value = false;
+      loading.value = false
     }
-  };
+  }
 
   return {
     user,
     isAuthenticated,
     loading,
     isInitialized,
-    
+    csrfToken,
+
     initialize,
     login,
-    logout
-  };
-});
+    logout,
+  }
+})

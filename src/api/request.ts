@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useAuthStore } from '@/store/auth';
+import { storeToRefs } from 'pinia';
 
 const api = axios.create({
   baseURL: '/api',
@@ -12,10 +13,7 @@ const api = axios.create({
 
 api.interceptors.request.use(async (config) => {
       try {
-        const csrfToken = document.cookie
-          .split('; ')
-          .find(row => row.startsWith('XSRF-TOKEN='))
-          ?.split('=')[1];
+        const { csrfToken } = storeToRefs(useAuthStore());
         
         if (csrfToken) {
           config.headers['X-XSRF-TOKEN'] = csrfToken;

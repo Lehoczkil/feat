@@ -8,7 +8,6 @@ export const getCsrfToken = async (): Promise<void> => {
 };
 
 export const login = async (credentials: LoginCredentials): Promise<User> => {
-  await getCsrfToken();
   const response = await api.post(`${prefix}/login`, credentials);
   return response.data.data;
 };
