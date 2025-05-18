@@ -3,6 +3,8 @@ import { ref, type Ref } from 'vue'
 import { login as apiLogin, logout as apiLogout, getUser, getCsrfToken } from '@/api/auth'
 import type { User, LoginCredentials } from '@/types/auth'
 import { useRouter } from 'vue-router'
+import { useNotification } from '@/composables/useNotification'
+import { useI18n } from 'vue-i18n'
 
 export const useAuthStore = defineStore('auth', () => {
   const user: Ref<User | null> = ref<User | null>(null)
@@ -12,6 +14,9 @@ export const useAuthStore = defineStore('auth', () => {
   const router = useRouter()
   const csrfToken: Ref<string | null> = ref<string | null>(null)
   const lang: Ref<string | null> = ref<string | null>('en')
+
+  const { showError, showSuccess } = useNotification()
+  const { t } = useI18n()
 
   const fetchUser = async (): Promise<User | null> => {
     loading.value = true
@@ -46,25 +51,33 @@ export const useAuthStore = defineStore('auth', () => {
       const authUser = await apiLogin(credentials)
       user.value = authUser
       isAuthenticated.value = true
+      showSuccess(t('notifications.login_success'))
       await router.push({ name: 'Home' })
       return true
     } catch (err) {
       console.error(err)
+      showError(t('notifications.login_error'))
       return false
     } finally {
       isLoginLoading.value = false
     }
   }
 
-  const logout = async (): Promise<void> => {
+  const logout = async (hideNotification: boolean = false): Promise<void> => {
     loading.value = true
     try {
       await apiLogout()
       user.value = null
       isAuthenticated.value = false
+      if (!hideNotification) {
+        showSuccess(t('notifications.logout_success'))
+      }
       await router.push({ name: 'Login' })
     } catch (err) {
       console.error(err)
+      if (!hideNotification) {
+        showError(t('notifications.logout_error'))
+      }
     } finally {
       loading.value = false
     }

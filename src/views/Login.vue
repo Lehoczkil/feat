@@ -3,6 +3,8 @@ import { useAuthStore } from '@/store/auth';
 import { storeToRefs } from 'pinia';
 import { ref, type Ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useNotification } from '@/composables/useNotification'
+import { useI18n } from 'vue-i18n';
 
 interface LoginCredentials {
   email: string;
@@ -14,6 +16,10 @@ const authStore = useAuthStore();
 const { login } = authStore;
 const { loading } = storeToRefs(authStore);
 
+const { t } = useI18n()
+
+const { showError } = useNotification()
+
 const credentials: Ref<LoginCredentials> = ref({
   email: '',
   password: ''
@@ -22,11 +28,14 @@ const credentials: Ref<LoginCredentials> = ref({
 const handleSubmit = async (): Promise<void> => {
   try {
     const success = await login(credentials.value);
-    if (success) {
+    if (!success) {
+      showError(t('notifications.login_error'));
+    } else {
       await router.push({ name: 'Home' });
     }
   } catch (err) {
     console.error('Login failed:', err);
+    showError('Login failed. Please try again.');
   }
 };
 </script>

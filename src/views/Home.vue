@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/store/auth';
 import { storeToRefs } from 'pinia';
-import { computed, type ComputedRef } from 'vue';
+import { useNotification } from '@/composables/useNotification'
+import { useI18n } from 'vue-i18n';
 
 const authStore = useAuthStore();
 const { user, loading, isLoginLoading } = storeToRefs(authStore);
 const { logout } = authStore;
+
+const { showError } = useNotification()
+
+const { t } = useI18n()
 
 const handleLogout = async (): Promise<void> => {
   try {
     await logout();
   } catch (error) {
     console.error('Logout failed:', error);
+    showError(t('notifications.logout_error'));
   }
 };
 

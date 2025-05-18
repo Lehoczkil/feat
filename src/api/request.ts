@@ -41,9 +41,8 @@ api.interceptors.response.use(
     if (error.config?.url?.includes('/auth/login')) {
       return Promise.reject(error);
     }
-
     if (error.config?.url !== '/auth/user' && error.response?.status === 401) {
-      await authStore.logout();
+      await authStore.logout(true);
     }
     return Promise.reject(error);
   }

@@ -22,5 +22,12 @@
   "feature_2": "2. funkció",
   "feature_3": "3. funkció",
   "feature_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.",
-  "logout_button": "Kijelentkezés"
+  "logout_button": "Kijelentkezés",
+  "notifications": {
+    "login_success": "Sikeres bejelentkezés",
+    "login_error": "Érvénytelen email vagy jelszó",
+    "login_failed": "Bejelentkezés sikertelen. Kérjük próbáld újra.",
+    "logout_success": "Sikeres kijelentkezés",
+    "logout_error": "Kijelentkezés sikertelen. Kérjük próbáld újra."
+  }
 }

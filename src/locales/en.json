@@ -22,5 +22,12 @@
   "feature_2": "Feature 2",
   "feature_3": "Feature 3",
   "feature_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.",
-  "logout_button": "Logout"
+  "logout_button": "Logout",
+  "notifications": {
+    "login_success": "Login successful",
+    "login_error": "Invalid email or password",
+    "login_failed": "Login failed. Please try again.",
+    "logout_success": "Logged out successfully",
+    "logout_error": "Logout failed. Please try again."
+  }
 }
